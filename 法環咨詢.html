@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾尔登法环 - 最新资讯</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        body {
+            background-color: #0a0805;
+            color: #f9f9d3;
+            padding: 20px;
+            background-image: url("example/背景纹理.jpg");
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(10, 8, 5, 0.85);
+            border: 1px solid #5c3c0d;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .news-header {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+            letter-spacing: 3px;
+            border-bottom: 1px solid #5c3c0d;
+            padding-bottom: 15px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #5c3c0d;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #c0b283;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .tab-btn:hover {
+            color: #d4af37;
+        }
+
+        .tab-btn.active {
+            color: #d4af37;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #d4af37;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .notice-list {
+            list-style: none;
+        }
+
+        .notice-item {
+            padding: 18px 0;
+            border-bottom: 1px solid #332816;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .notice-item:hover {
+            background-color: rgba(212, 175, 55, 0.05);
+            padding-left: 10px;
+        }
+
+        .notice-tag {
+            background-color: rgba(92, 60, 13, 0.3);
+            color: #d4af37;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            border: 1px solid #5c3c0d;
+        }
+
+        .notice-title {
+            flex: 1;
+            color: #f9f9d3;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .notice-title:hover {
+            color: #d4af37;
+        }
+
+        .notice-date {
+            color: #9b845b;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .right-content {
+            margin-top: 30px;
+            background-color: rgba(15, 10, 5, 0.9);
+            padding: 25px;
+            border-radius: 5px;
+            border: 1px solid #5c3c0d;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .right-content h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+
+        .right-content p {
+            line-height: 1.6;
+            color: #e0d8b0;
+        }
+
+        .dlc-banner {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 15px;
+            border: 1px solid #5c3c0d;
+            transition: transform 0.3s;
+        }
+
+        .dlc-banner:hover {
+            transform: scale(1.02);
+        }
+        button a{
+            text-decoration: none;
+            background: none;
+            border: none;
+            color: #c0b283;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="news-container">
+        <div class="news-header">艾尔登法环 - 最新资讯</div>
+
+        <!-- 標籤切換按鈕 -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('latest')">最新消息</button>
+            <button class="tab-btn" onclick="switchTab('event')">活動公告</button>
+            <button class="tab-btn" onclick="switchTab('updates')">更新維護</button>
+            <button class="tab-btn" onclick="switchTab('dlc')">DLC情報</button>
+            <button class="tab-btn" onclick="switchTab('dlc')"><a href="./艾尔登法环.html">回到最初</a></button>
+        </div>
+
+        <!-- 標籤內容區域 -->
+        <div id="latest" class="tab-content active">
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <span class="notice-tag">公告</span>
+                    <span class="notice-title">《艾尔登法环》黄金树幽影 全球销量突破500万</span>
+                    <span class="notice-date">2024.07.15</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">活動</span>
+                    <span class="notice-title">夏日戰鬥祭典 參與即可獲得獨特戰灰</span>
+                    <span class="notice-date">2024.07.10</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">更新</span>
+                    <span class="notice-title">版本1.12更新說明 修復多處BUG與平衡調整</span>
+                    <span class="notice-date">2024.07.05</span>
+                </li>
+            </ul>
+        </div>
+
+        <div id="event" class="tab-content">
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <span class="notice-tag">活動</span>
+                    <span class="notice-title">「幽影之地挑戰賽」開啟 勝者獲得限定頭像</span>
+                    <span class="notice-date">2024.07.12</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">活動</span>
+                    <span class="notice-title">「黃金樹的恩賜」登錄獎勵領取延長公告</span>
+                    <span class="notice-date">2024.07.08</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">活動</span>
+                    <span class="notice-title">「半神們的宴會」合作挑戰活動即將開始</span>
+                    <span class="notice-date">2024.07.01</span>
+                </li>
+            </ul>
+        </div>
+
+        <div id="updates" class="tab-content">
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <span class="notice-tag">維護</span>
+                    <span class="notice-title">7月18日伺服器維護通知 (預計6小時)</span>
+                    <span class="notice-date">2024.07.16</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">更新</span>
+                    <span class="notice-title">版本1.12更新內容：新增BOSSrush模式</span>
+                    <span class="notice-date">2024.07.05</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">修復</span>
+                    <span class="notice-title">關於部分玩家無法進入幽影之地的問題修復</span>
+                    <span class="notice-date">2024.06.30</span>
+                </li>
+            </ul>
+        </div>
+
+        <div id="dlc" class="tab-content">
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <span class="notice-tag">DLC</span>
+                    <span class="notice-title">「黃金樹幽影」追加任務「梅瑟莫的記憶」即將上線</span>
+                    <span class="notice-date">2024.07.20</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">攻略</span>
+                    <span class="notice-title">「幽影之地」全收集圖文指南</span>
+                    <span class="notice-date">2024.07.03</span>
+                </li>
+                <li class="notice-item">
+                    <span class="notice-tag">DLC</span>
+                    <span class="notice-title">《黃金樹幽影》開發者訪談：新機制與故事背景</span>
+                    <span class="notice-date">2024.06.25</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 右側內容區 -->
+        <div class="right-content">
+            <h3>黃金樹幽影 - 新挑戰</h3>
+            <p>全新區域「幽影之地」已開放探索，挑戰梅瑟莫與他的忠實追隨者，解開米凱拉的神秘計劃。完成DLC主線任務可獲得獨特武器「幽影月光劍」。</p>
+            <img src="example/meisemo2.jpg" alt="黃金樹幽影宣傳圖" class="dlc-banner">
+        </div>
+    </div>
+
+    <script>
+        // 標籤切換函數
+        function switchTab(tabId) {
+            // 隱藏所有標籤內容
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 移除所有按鈕的active狀態
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 顯示對應標籤內容 + 激活按鈕
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
